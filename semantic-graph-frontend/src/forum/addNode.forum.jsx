@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "../atoms/submit.button";
 import { addNode } from "../apis/apis";
 import { useQueryClient, useMutation } from "react-query";
+import { toast } from "sonner";
 
 const AddNodeForum = () => {
   const {
@@ -17,6 +18,7 @@ const AddNodeForum = () => {
     onSuccess: (data) => {
       if (data.status === "ok") {
         queryClient.invalidateQueries("data");
+        toast.success("Node added successfully!");
         reset();
       }
     },
