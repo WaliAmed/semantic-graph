@@ -69,7 +69,6 @@ const Login = () => {
 
         <div className="block sm:hidden flex justify-center mt-10">
           <input
-            className="hidden"
             ref={inputRef}
             style={{ opacity: 0, position: "absolute", pointerEvents: "none" }}
           />
