@@ -14,6 +14,9 @@ export const GraphProvider = ({ children }) => {
   const [login, setLogin] = useState(false);
   const [guest, setGuest] = useState(false);
 
+  // Key helps in resetting the position of nodes on the screen
+  const [key, setKey] = useState(0);
+
   // Fetching graph data
   const { data, isLoading } = useQuery("data", fetchNodesData);
 
@@ -30,6 +33,8 @@ export const GraphProvider = ({ children }) => {
     setLogin,
     guest,
     setGuest,
+    key,
+    setKey,
   };
 
   return (

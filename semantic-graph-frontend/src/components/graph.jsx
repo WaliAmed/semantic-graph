@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Graph } from "react-d3-graph";
 import Reset from "../atoms/reset.button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,10 +15,7 @@ const initialConfig = {
 };
 
 function GraphComponent() {
-  const { nodeData, isLoading } = useGraphContext();
-
-  // Key helps in resetting the position of nodes on the screen
-  const [key, setKey] = useState(0);
+  const { nodeData, isLoading, key, setKey } = useGraphContext();
 
   // Loading Spinner Component
   const LoadingSpinner = () => (
@@ -51,7 +47,9 @@ function GraphComponent() {
             <EmptyData />
           ) : (
             <>
-              <Reset setKey={setKey} />
+              <div className="hidden sm:block">
+                <Reset setKey={setKey} customClass={"absolute top-5 right-5"} />
+              </div>
               <Graph
                 key={key}
                 id="graph-id"

@@ -8,9 +8,10 @@ import AddLinkForum from "../forum/addLink.forum";
 import GraphDataBlock from "./graphDataBlock";
 import DeleteNodeForum from "../forum/deleteNode.forum";
 import RemoveLinkForum from "../forum/removeLink.forum";
+import Reset from "../atoms/reset.button";
 
 const Drawer = () => {
-  const { setOpenDrawer, openDrawer, guest } = useGraphContext();
+  const { setOpenDrawer, openDrawer, guest, setKey } = useGraphContext();
 
   let ForumData = [];
 
@@ -46,6 +47,10 @@ const Drawer = () => {
           {ForumData.map((items) => (
             <Accordion key={items.title} {...items} />
           ))}
+
+          <div className="block sm:hidden flex justify-center mt-10">
+            <Reset setKey={setKey} />
+          </div>
         </div>
 
         <div className="absolute top-2 right-[-20px]">

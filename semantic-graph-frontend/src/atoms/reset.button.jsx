@@ -3,7 +3,7 @@ import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGraphContext } from "../context/graph.provider";
 
-const Reset = ({ setKey }) => {
+const Reset = ({ setKey, customClass }) => {
   const { setOpenDrawer, nodeData, setNodeData } = useGraphContext();
 
   const getRandomPosition = () => Math.random() * 500;
@@ -27,7 +27,7 @@ const Reset = ({ setKey }) => {
     <div className="group relative">
       <button
         title="Reset Nodes Position"
-        className="absolute text-xs top-5 right-5 bg-slate-600 group-hover:bg-slate-800 p-3 rounded-lg font-bold text-white"
+        className={`text-xs bg-slate-600 group-hover:bg-slate-800 p-3 rounded-lg font-bold text-white ${customClass}`}
         onClick={resetZoom}
       >
         <div className="flex items-center">
@@ -46,6 +46,7 @@ const Reset = ({ setKey }) => {
 // Prop type validation
 Reset.propTypes = {
   setKey: PropTypes.func.isRequired,
+  customClass: PropTypes.object,
 };
 
 export default Reset;

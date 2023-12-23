@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SubmitButton from "../atoms/submit.button";
 import { useGraphContext } from "../context/graph.provider";
 
 const Login = () => {
   const { setLogin, setGuest } = useGraphContext();
   const [pressedKeys, setPressedKeys] = useState([]);
+  const inputRef = useRef(null);
 
   const jsonArrayString = import.meta.env.VITE_APP_PASSWORD_ARRAY;
   const jsonPasswordArray = JSON.parse(jsonArrayString);
@@ -43,6 +44,12 @@ const Login = () => {
     setLogin(true);
   };
 
+  const openKeyboard = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-center">
@@ -55,10 +62,23 @@ const Login = () => {
           <SubmitButton
             onClick={handleGuestLogin}
             type="button"
-            title={"Login as guest?"}
+            title={"Login as a guest?"}
             customClass="ml-5"
           />
         </form>
+
+        <div className="block sm:hidden flex justify-center mt-10">
+          <input
+            className="hidden"
+            ref={inputRef}
+            style={{ opacity: 0, position: "absolute", pointerEvents: "none" }}
+          />
+          <SubmitButton
+            onClick={openKeyboard}
+            type="button"
+            title={"Pop up keyboard?"}
+          />
+        </div>
       </div>
     </div>
   );
