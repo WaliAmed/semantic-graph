@@ -12,9 +12,7 @@ import RemoveLinkForum from "../forum/removeLink.forum";
 const Drawer = () => {
   const { setOpenDrawer, openDrawer, guest } = useGraphContext();
 
-  let ForumData = [
-    { title: "Graph Data", Component: () => <GraphDataBlock /> },
-  ];
+  let ForumData = [];
 
   if (!guest) {
     ForumData = [
@@ -25,6 +23,11 @@ const Drawer = () => {
       { title: "Remove Link", Component: () => <RemoveLinkForum /> },
     ];
   }
+
+  ForumData = [
+    ...ForumData,
+    { title: "Graph Data", Component: () => <GraphDataBlock /> },
+  ];
 
   return (
     <div>
