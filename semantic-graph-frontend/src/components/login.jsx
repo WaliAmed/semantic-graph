@@ -10,29 +10,10 @@ const Login = () => {
   const jsonArrayString = import.meta.env.VITE_APP_PASSWORD_ARRAY;
   const jsonPasswordArray = JSON.parse(jsonArrayString);
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      const { key } = event;
-
-      if (/^[a-zA-Z0-9.]$/i.test(key)) {
-        setPressedKeys((prevKeys) => [...prevKeys, key]);
-      }
-    };
-
-    const checkSequence = () => {
-      if (jsonPasswordArray.includes(pressedKeys.join("").toLowerCase())) {
-        setLogin(true);
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyPress);
-
-    checkSequence();
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [pressedKeys, setLogin]);
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setPressedKeys(value.split(""));
+  };
 
   const handleTryAgain = (event) => {
     event.preventDefault();
@@ -49,6 +30,30 @@ const Login = () => {
       inputRef.current.focus();
     }
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      const { key } = event;
+
+      if (/^[a-zA-Z0-9.]$/i.test(key)) {
+        event.preventDefault();
+        setPressedKeys((prevKeys) => [...prevKeys, key]);
+      }
+    };
+
+    const checkSequence = () => {
+      if (jsonPasswordArray.includes(pressedKeys.join("").toLowerCase())) {
+        setLogin(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+    checkSequence();
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [pressedKeys, setLogin, jsonPasswordArray]);
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -71,6 +76,8 @@ const Login = () => {
           <input
             ref={inputRef}
             style={{ opacity: 0, position: "absolute", pointerEvents: "none" }}
+            value={pressedKeys.join("")} // Joining the array of characters to display in the input
+            onChange={handleInputChange}
           />
           <SubmitButton
             onClick={openKeyboard}

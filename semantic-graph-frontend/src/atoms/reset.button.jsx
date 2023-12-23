@@ -46,7 +46,7 @@ const Reset = ({ setKey, customClass }) => {
 // Prop type validation
 Reset.propTypes = {
   setKey: PropTypes.func.isRequired,
-  customClass: PropTypes.object,
+  customClass: PropTypes.string,
 };
 
 export default Reset;
