@@ -1,5 +1,5 @@
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-console.log(apiUrl);
+
 /**
  * Function to fetch nodes data from the API.
  * @returns {Promise} A promise that resolves to the fetched nodes data in JSON format.
