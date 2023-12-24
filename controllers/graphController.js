@@ -107,6 +107,19 @@ const graphController = {
     const graphData = graph.printGraph();
     res.json({ graphData });
   },
+
+  /*
+  @desc It will generate random data for 20 nodes
+  @route GET /api/graph/generateRandomData
+  @access public
+  */
+  generateRandomNodeData: (req, res) => {
+    graph.addRandomData();
+    res.status(200).json({
+      message: `Random data added!`,
+      status: "ok",
+    });
+  },
 };
 
 module.exports = graphController;

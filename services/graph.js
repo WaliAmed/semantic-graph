@@ -75,6 +75,39 @@ class Graph {
         this.nodesObject[items] && this.nodesObject[items].links.length;
     }
   }
+
+  // to add a random node data
+  addRandomData() {
+    function generateRandomColor() {
+      return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    }
+
+    function generateRandomNodes(numNodes) {
+      const nodesObject = {};
+
+      for (let i = 1; i <= numNodes; i++) {
+        const nodeName = `node${i}`;
+        const links = [];
+
+        for (let j = 1; j <= numNodes; j++) {
+          if (i !== j && Math.random() < 0.3) {
+            links.push(`node${j}`);
+          }
+        }
+
+        nodesObject[nodeName] = {
+          links,
+          pageRank: Math.floor(Math.random() * 5) + 1,
+          nodeColor: generateRandomColor(),
+        };
+      }
+
+      return nodesObject;
+    }
+
+    // Generate data for 20 nodes and assign it to this.nodesObject
+    this.nodesObject = generateRandomNodes(20);
+  }
 }
 
 module.exports = Graph;

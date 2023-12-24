@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useState } from "react";
-import { fetchNodesData } from "../apis/apis";
-import { useQuery } from "react-query";
+import { fetchNodesData, generateRandomNodeData } from "../apis/apis";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useGraphData } from "../hooks/useGrapghData";
+import { toast } from "sonner";
 
 const GraphContext = createContext();
 
@@ -23,6 +24,23 @@ export const GraphProvider = ({ children }) => {
   // Custom hook to generate graph data
   useGraphData({ data, setData: setNodeData, isLoading });
 
+  // -- To generate random nodes data - Start
+  const queryClient = useQueryClient();
+  const generateRandomData = () => {
+    mutation.mutate();
+  };
+
+  const mutation = useMutation(generateRandomNodeData, {
+    onSuccess: (data) => {
+      if (data.status === "ok") {
+        queryClient.invalidateQueries("data");
+        toast.success("Random data added!");
+        setOpenDrawer(false);
+      }
+    },
+  });
+  // -- To generate random nodes data - End
+
   const contextValue = {
     openDrawer,
     setOpenDrawer,
@@ -35,6 +53,7 @@ export const GraphProvider = ({ children }) => {
     setGuest,
     key,
     setKey,
+    generateRandomData,
   };
 
   return (

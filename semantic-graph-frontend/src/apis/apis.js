@@ -118,3 +118,11 @@ export const removeLink = async ({ node1, node2 }) => {
     throw new Error(`Error: ${error.message}`);
   }
 };
+
+export const generateRandomNodeData = async () => {
+  const response = await fetch(`${apiUrl}/graph/generateRandomData`);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};

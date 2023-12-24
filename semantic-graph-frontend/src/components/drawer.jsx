@@ -9,9 +9,12 @@ import GraphDataBlock from "./graphDataBlock";
 import DeleteNodeForum from "../forum/deleteNode.forum";
 import RemoveLinkForum from "../forum/removeLink.forum";
 import Reset from "../atoms/reset.button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Drawer = () => {
-  const { setOpenDrawer, openDrawer, guest, setKey } = useGraphContext();
+  const { setOpenDrawer, openDrawer, guest, setKey, generateRandomData } =
+    useGraphContext();
 
   let ForumData = [];
 
@@ -50,6 +53,26 @@ const Drawer = () => {
 
           <div className="block sm:hidden flex justify-center mt-10">
             <Reset setKey={setKey} />
+          </div>
+
+          {/* Random Node Data Generator Button*/}
+          <div className="flex justify-center mt-5">
+            <div className="group relative">
+              <button
+                title="Reset Nodes Position"
+                className={`text-xs bg-slate-600 group-hover:bg-slate-800 p-3 rounded-lg font-bold text-white w-[180px] flex justify-center`}
+                onClick={generateRandomData}
+              >
+                <div className="flex items-center">
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    size="lg"
+                    className="transition-all"
+                  />
+                  <span className="ml-2">Generate random data?</span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
 

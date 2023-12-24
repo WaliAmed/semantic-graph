@@ -20,4 +20,7 @@ router.route("/removeLink/:node1/:node2").delete(graphController.removeLink);
 // Route for printing the graph structure (for debugging purposes)
 router.route("/printGraph").get(graphController.printGraph);
 
+// Route for printing the graph structure (for debugging purposes)
+router.route("/generateRandomData").get(graphController.generateRandomNodeData);
+
 module.exports = router;

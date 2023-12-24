@@ -27,7 +27,7 @@ const Reset = ({ setKey, customClass }) => {
     <div className="group relative">
       <button
         title="Reset Nodes Position"
-        className={`text-xs bg-slate-600 group-hover:bg-slate-800 p-3 rounded-lg font-bold text-white ${customClass}`}
+        className={`text-xs bg-slate-600 group-hover:bg-slate-800 p-3 rounded-lg font-bold text-white w-[180px] flex justify-center ${customClass}`}
         onClick={resetZoom}
       >
         <div className="flex items-center">
