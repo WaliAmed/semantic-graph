@@ -140,6 +140,6 @@ If you have any feedback, please reach out to us at waliamedvd@gmail.com
 
 ## Screenshots
 
-![App Screenshot](https://ibb.co/9G0bpPG/)
-![App Screenshot](https://ibb.co/ZHQWdxF)
+[![image.png](https://i.postimg.cc/J4bRWVYN/image.png)](https://postimg.cc/4mNDzMgy)
+[![image.png](https://i.postimg.cc/XNLTKjPD/image.png)](https://postimg.cc/jCWgtbtz)
 
